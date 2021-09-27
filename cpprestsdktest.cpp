@@ -14,17 +14,17 @@
 * 
 * pplx: 병렬처리 기능 namespace이다. task를 선언할 때 사용된다.
 * main 에서는 task를 함수에서 실행후 반환하는 식으로 구현한다.
-* 이때 try-catch 문 내에서 wait()를 호출하여 response를 받을 때까지 기다려야 프로그램이 바로 종료되지 않는다.
-* 
+* 이때 wait()를 호출하여 response를 받을 때까지 기다려야 프로그램이 바로 종료되지 않는다.
+* try-catch 문으로 발생한 예외를 처리
+*
 * 기본적인 GET, POST, PUT 등은 아래 코드를 참고하면 된다.
 * http 해더 사용법이 없어서 다른 곳에서 참고하여 추가하였다. (이거 할 줄 모르면 401에러가 발생해도 해결이 안된다)
 * 아래 msg.headers().add()를 참고
 * 
-* json은 stl의 map처럼 관리된다. 
 * 서버 응답이 json형식이면 .then([=](http_response response) 에서 response.extract_json()으로 받으면 된다.
 * .then([](json::value jsonObject) { ... 로 이어서 처리할 수 있다.
 * 이때 jsonOject를 map처럼 사용할 수 있다.
-* 그전에 json  형식이 배열이거나, 각종 자료형일 정우 as_XXXX 메서드를 이용해서 변환하여 처리하여야한다.
+* 그전에 json 형식이 배열이거나, 각종 자료형일 정우 as_XXXX 메서드를 이용해서 변환하여 처리하여야한다.
 * 그냥 jsonObject 전체를 문자열로 확인하려면 .serialize()를 호출한다.
 * U("xxx") == L"xxx"로 유니코드 문자열 표시이다. (L"유니코드문자열" 사용시 추가 필요: #include <string> using namespace std::string_literals;)
 * 
@@ -34,6 +34,7 @@
 * json::value jsonObject 로 객체 생성 후 map처럼 사용하여 key:value 를 저장시킬 수 있다.
 * msg.set_body(jsonObject.serialize());로 body에 추가
 * 
+* 추가로 jsonObject가 배열이면 jsonObject[idx] = json::value::XXX() 방식으로 원소를 삽입할 수 있다. (참고: kakao2ndcpp.cpp: MatchAPI)
 */
 
 #include <iostream>
