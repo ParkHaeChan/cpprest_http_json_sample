@@ -4,8 +4,6 @@ programmers 과제관의 kakao 2021 2차로 http json request 송신 테스트 �
 
 시간이 없는 관계로 http request 보내서 response json 받아지는지만 테스트 해봄
 
-http 통신 별로 안해봐서 안익숙하기도하고, 카사블랑카(cpprestsdk) 자료 넘나 없음 ㅠㅠ
-
 20210927
 kakao2022 2차 코드 추가
 
